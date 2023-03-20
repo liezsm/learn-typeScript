@@ -153,3 +153,45 @@ inv3 = new Invoice("elle", "workd on site", 222);
 
 const invoicesWithFormatter: HasFormatter[] = [];
 invoicesWithFormatter.push(inv3);
+
+// generics
+
+// -using generics in function
+const addUID = <T extends object>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return { ...obj, uid };
+};
+
+let docOne = addUID({ name: "test", age: 40 });
+// let docTwo = addUID("han")
+
+let docThree = addUID(["yoshi", 40]);
+
+console.log(docThree);
+
+console.log(docOne);
+
+// -enums - best use for enumerating
+
+enum ResourceType {
+  BOOK,
+  AUTHOR,
+  PERSON,
+}
+// -using generices in interface
+
+interface Resouce<T> {
+  uid: number;
+  resourceName: string;
+  resourseType: ResourceType;
+  data: T;
+}
+
+const docForu: Resouce<string[]> = {
+  uid: 1,
+  resourceName: "perosn",
+  resourseType: ResourceType.BOOK,
+  data: ["shaun"],
+};
+
+console.log(docForu);

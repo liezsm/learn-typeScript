@@ -94,3 +94,28 @@ let inv3;
 inv3 = new Invoice("elle", "workd on site", 222);
 const invoicesWithFormatter = [];
 invoicesWithFormatter.push(inv3);
+// generics
+// -using generics in function
+const addUID = (obj) => {
+    let uid = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, obj), { uid });
+};
+let docOne = addUID({ name: "test", age: 40 });
+// let docTwo = addUID("han")
+let docThree = addUID(["yoshi", 40]);
+console.log(docThree);
+console.log(docOne);
+// -enums - best use for enumerating
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
+    ResourceType[ResourceType["PERSON"] = 2] = "PERSON";
+})(ResourceType || (ResourceType = {}));
+const docForu = {
+    uid: 1,
+    resourceName: "perosn",
+    resourseType: ResourceType.BOOK,
+    data: ["shaun"],
+};
+console.log(docForu);
