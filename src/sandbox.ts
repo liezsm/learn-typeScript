@@ -90,16 +90,18 @@ const amount = document.querySelector("#amount") as HTMLInputElement;
 const ul = document.querySelector("ul")!;
 
 const listTemplate = new ListTemplate(ul);
+let values: [string, string, number];
 
 form.addEventListener("submit", (e: Event) => {
   e.preventDefault();
 
   let doc: HasFormatter;
+  values = [toFrom.value, details.value, amount.valueAsNumber];
 
   if (type.value == "invoice") {
-    doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
+    doc = new Invoice(...values);
   } else {
-    doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+    doc = new Payment(...values);
   }
 
   listTemplate.render(doc, type.value, "end");
@@ -195,3 +197,10 @@ const docForu: Resouce<string[]> = {
 };
 
 console.log(docForu);
+
+// -tuples
+
+let tup: [string, number, boolean] = ["ryu", 24, true];
+console.log(tup);
+
+// -reminder: types are fixed onece we defined the types inside the box

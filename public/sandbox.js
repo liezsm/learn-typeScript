@@ -55,14 +55,16 @@ const details = document.querySelector("#details");
 const amount = document.querySelector("#amount");
 const ul = document.querySelector("ul");
 const listTemplate = new ListTemplate(ul);
+let values;
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     let doc;
+    values = [toFrom.value, details.value, amount.valueAsNumber];
     if (type.value == "invoice") {
-        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
+        doc = new Invoice(...values);
     }
     else {
-        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+        doc = new Payment(...values);
     }
     listTemplate.render(doc, type.value, "end");
 });
@@ -119,3 +121,7 @@ const docForu = {
     data: ["shaun"],
 };
 console.log(docForu);
+// -tuples
+let tup = ["ryu", 24, true];
+console.log(tup);
+// -reminder: types are fixed onece we defined the types inside the box
